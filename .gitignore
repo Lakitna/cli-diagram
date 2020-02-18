@@ -1,0 +1,7 @@
+node_modules
+.nyc_output
+.rpt2_cache
+reports
+coverage
+dist
+docs

@@ -1,0 +1,37 @@
+{
+  "name": "cli-diagram",
+  "version": "1.0.0",
+  "description": "Draw needlessly complex diagrams on the command line",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc mocha",
+    "test:watch": "mocha --watch",
+    "test:mutation": "stryker run \"stryker.conf.js\"",
+    "lint": "eslint --ignore-path \".gitignore\" \"{src,test}/**/*\""
+  },
+  "author": "Lakitna",
+  "license": "MIT",
+  "dependencies": {
+    "boxen": "^4.2.0",
+    "chalk": "^3.0.0"
+  },
+  "devDependencies": {
+    "@stryker-mutator/core": "^2.5.0",
+    "@stryker-mutator/html-reporter": "^2.5.0",
+    "@stryker-mutator/javascript-mutator": "^2.5.0",
+    "@stryker-mutator/mocha-framework": "^2.5.0",
+    "@stryker-mutator/mocha-runner": "^2.5.0",
+    "chai": "^4.2.0",
+    "choma": "^1.2.1",
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-chai-expect": "^2.1.0",
+    "eslint-plugin-mocha": "^6.2.2",
+    "eslint-plugin-sonarjs": "^0.5.0",
+    "eslint-plugin-unicorn": "^16.1.1",
+    "mocha": "^7.0.1",
+    "nyc": "^15.0.0",
+    "sinon": "^8.1.1",
+    "sinon-chai": "^3.4.0"
+  }
+}
