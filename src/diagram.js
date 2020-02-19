@@ -1,4 +1,5 @@
 const Box = require('./box');
+const Container = require('./container');
 const Line = require('./line');
 const Arrow = require('./arrow');
 const Spacer = require('./spacer');
@@ -31,7 +32,9 @@ class Diagram extends Array {
                     }, '')
                     .trimEnd();
             });
-        return lines.join('\n');
+        return lines
+            .join('\n')
+            .trimEnd();
     }
 
     get height() {
@@ -45,6 +48,13 @@ class Diagram extends Array {
         options = Object.assign({}, this.options, options);
 
         this.push(new Box(contents, options));
+        return this;
+    }
+
+    container(contents, options={}) {
+        options = Object.assign({}, this.options, options);
+
+        this.push(new Container(contents, options));
         return this;
     }
 
