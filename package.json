@@ -1,16 +1,29 @@
 {
   "name": "cli-diagram",
-  "version": "1.0.0",
-  "description": "Draw needlessly complex diagrams on the command line",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "Draw needlessly complex diagrams in the console",
+  "main": "src/diagram.js",
   "scripts": {
     "test": "nyc mocha",
     "test:watch": "mocha --watch",
     "test:mutation": "stryker run \"stryker.conf.js\"",
-    "lint": "eslint --ignore-path \".gitignore\" \"{src,test}/**/*\""
+    "lint": "eslint --ignore-path \".gitignore\" \"{src,test}/**/*\"",
+    "prepublishOnly": "npm run lint && npm run test && npm run test:mutation"
   },
   "author": "Lakitna",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lakitna/cli-diagram"
+  },
+  "keywords": [
+    "cli",
+    "diagram",
+    "draw",
+    "flowchart",
+    "chart",
+    "flow"
+  ],
   "dependencies": {
     "boxen": "^4.2.0",
     "chalk": "^3.0.0"
@@ -26,12 +39,13 @@
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-chai-expect": "^2.1.0",
-    "eslint-plugin-mocha": "^6.2.2",
+    "eslint-plugin-mocha": "^6.3.0",
     "eslint-plugin-sonarjs": "^0.5.0",
     "eslint-plugin-unicorn": "^16.1.1",
     "mocha": "^7.0.1",
     "nyc": "^15.0.0",
-    "sinon": "^8.1.1",
-    "sinon-chai": "^3.4.0"
+    "sinon": "^9.0.0",
+    "sinon-chai": "^3.4.0",
+    "text2png": "^2.3.0"
   }
 }
