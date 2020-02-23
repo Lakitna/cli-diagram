@@ -31,6 +31,8 @@ console.log(myDiagram.draw());
 └─────────────┘    └───────────────┘
 ```
 
+[More examples in this test file](./test/integration/diagram.js);
+
 ## Elements
 
 Diagrams are build from elements. There is a variety of elements available to mix and match.
@@ -122,7 +124,7 @@ O──O
 
 #### Labels
 
-You can add labels to an arrow.
+You can add labels to arrows.
 
 ```javascript
 .arrow(['<--:Hello, arrow!', '<--', '-->:Hi there'])
@@ -146,7 +148,7 @@ Add some space between elements.
 
 ```javascript
 .space(2)
-.space(size)
+.space(width)
 ```
 
 ```plain
