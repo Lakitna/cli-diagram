@@ -1,5 +1,6 @@
 node_modules
 .nyc_output
+.stryker-tmp
 .rpt2_cache
 reports
 coverage
