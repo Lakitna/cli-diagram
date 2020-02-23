@@ -122,7 +122,7 @@ O──O
 
 #### Labels
 
-You can add labels to an arrows.
+You can add labels to an arrow.
 
 ```javascript
 .arrow(['<--:Hello, arrow!', '<--', '-->:Hi there'])
@@ -163,7 +163,7 @@ A borderless box with some string contents and no padding. Content can be multil
 ```
 
 ```plain
-
+Hello, container!
 ```
 
 #### Options
