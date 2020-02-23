@@ -4,7 +4,7 @@ Draw needlessly complex diagrams in the console.
 
 ![cli-diagram example](./documentation/example.png)
 
-## Instal
+## Install
 
 ```shell
 npm install cli-diagram
