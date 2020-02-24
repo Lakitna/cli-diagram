@@ -44,6 +44,7 @@
     "eslint-plugin-unicorn": "^16.1.1",
     "mocha": "^7.0.1",
     "nyc": "^15.0.0",
+    "outdent": "^0.7.0",
     "sinon": "^9.0.0",
     "sinon-chai": "^3.4.0",
     "text2png": "^2.3.0"
