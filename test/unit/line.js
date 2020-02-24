@@ -213,7 +213,7 @@ describe('Line', function() {
         });
 
         it('adds a label to a some of the lines', function() {
-            const line = new Line(['label', 'hello', undefined], {}, []);
+            const line = new Line(['label', 'hello', null], {}, []);
 
             expect(line.toString()).to.equal(
                 '──┤label├──\n' +
