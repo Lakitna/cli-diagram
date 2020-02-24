@@ -9,6 +9,13 @@ describe('Line', function() {
         expect(line instanceof Element).to.be.true;
     });
 
+    it('draws a single line without an object defined with an array', function() {
+        const line = new Line([undefined], {}, []);
+
+        expect(line.toString()).to.equal(
+            '────');
+    });
+
     it('draws a single line without an object', function() {
         const line = new Line(1, {}, []);
 
@@ -121,6 +128,20 @@ describe('Line', function() {
             '    ');
     });
 
+    describe('get width', function() {
+        it('returns the width of the line', function() {
+            const line = new Line(1, {size: 1}, []);
+
+            expect(line.width).to.equal(4);
+        });
+
+        it('returns the width of the line + the width of the label', function() {
+            const line = new Line(['12345'], {size: 1}, []);
+
+            expect(line.width).to.equal(11);
+        });
+    });
+
     describe('get height', function() {
         it('retuns the line count when there is no object attached', function() {
             const line = new Line(4, {}, []);
@@ -173,6 +194,39 @@ describe('Line', function() {
             ]
 
             expect(line.height).to.equal(10);
+        });
+    });
+
+    context('Labels', function() {
+        it('adds a label to a single line', function() {
+            const line = new Line(['label'], {}, []);
+
+            expect(line.toString()).to.equal('──┤label├──');
+        });
+
+        it('adds a label to a multiple lines', function() {
+            const line = new Line(['label', 'hello'], {}, []);
+
+            expect(line.toString()).to.equal(
+                '──┤label├──\n' +
+                '──┤hello├──');
+        });
+
+        it('adds a label to a some of the lines', function() {
+            const line = new Line(['label', 'hello', undefined], {}, []);
+
+            expect(line.toString()).to.equal(
+                '──┤label├──\n' +
+                '──┤hello├──\n' +
+                '───────────');
+        });
+
+        it('makes all labels the same width', function() {
+            const line = new Line(['long label', 'short'], {}, []);
+
+            expect(line.toString()).to.equal(
+                '──┤long label├──\n' +
+                '──┤short     ├──');
         });
     });
 
