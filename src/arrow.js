@@ -3,25 +3,18 @@ const Line = require('./line');
 class Arrow extends Line {
     constructor(directions=[], options, diagram) {
         super(directions.length, options, diagram);
-        this.labelLength = 0;
-        this.directions = this.parse(directions);
-    }
-
-    get width() {
-        if (this.labelLength > 0) {
-            return Math.round(super.width) + 3 + this.labelLength;
-        }
-        return Math.round(super.width) + 1;
+        this.parse(directions);
     }
 
     toString() {
-        const gap = ' '.repeat(this.buildArrow(this.directions[0]).length);
+        const gap = ' '.repeat(this.width);
         const directions = [...this.directions];
+        const labels = [...this.labels];
 
         const result = this.layout
             .map((line) => {
                 if (line === true) {
-                    return this.buildArrow(directions.shift());
+                    return this.buildArrow(directions.shift(), labels.shift());
                 }
                 return gap;
             })
@@ -30,43 +23,29 @@ class Arrow extends Line {
     }
 
     parse(definitions) {
-        definitions = definitions.map((definition) => {
-            if (typeof definition === 'string') {
-                const [direction, label] = definition.split(':');
-                return {direction: direction.toLowerCase(), label};
-            }
-            return definition;
-        });
+        this.directions = [];
+        this.labels = [];
 
-        this.labelLength = definitions.reduce((previous, current) => {
-            if (typeof current.label === 'string') {
-                return Math.max(previous, current.label.length);
-            }
-            return previous;
-        }, 0);
+        definitions
+            .map((definition) => {
+                if (typeof definition === 'string') {
+                    const [direction, label] = definition.split(':');
+                    return {direction: direction.toLowerCase(), label};
+                }
+                return definition;
+            })
+            .forEach((definition) => {
+                this.directions.push(definition.direction);
+                this.labels.push(definition.label);
+            });
 
-        return definitions.map((definition) => {
-            if (typeof definition.label === 'string') {
-                definition.label = definition.label.padEnd(this.labelLength);
-            }
-            return definition;
-        });
+        this.labels = this.parseLabels(this.labels);
     }
 
-    buildArrow(arrow) {
-        let shaft = '─';
+    buildArrow(direction, label) {
+        const shaft = this.buildShaft(label);
 
-        if (arrow.label === undefined) {
-            shaft = shaft.repeat(this.width);
-        }
-        else {
-            const shaftLength = (this.width - this.labelLength - 1) / 2;
-            shaft = shaft.repeat(shaftLength)
-                + `┤${arrow.label}├`
-                + shaft.repeat(shaftLength);
-        }
-
-        switch (arrow.direction) {
+        switch (direction) {
             case 'left':
             case '<--':
                 return '◀' + shaft.slice(1);

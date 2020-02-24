@@ -1,20 +1,33 @@
 const Element = require('./element');
 
 class Line extends Element {
-    constructor(count, options, diagram) {
+    /**
+     * @param {number|string[]} lines
+     * @param {object} options
+     * @param {Diagram} diagram
+     */
+    constructor(lines, options, diagram) {
         super(options);
-        this.count = count;
+        if (Array.isArray(lines)) {
+            this.count = lines.length;
+            this.labels = this.parseLabels(lines);
+        }
+        else {
+            this.count = lines;
+            this.labels = this.parseLabels(new Array(this.count));
+        }
         this.diagram = diagram;
     }
 
     toString() {
-        const gap = ' '.repeat(this.width + 1);
-        const pipe = '─'.repeat(this.width + 1);
+        const gap = ' '.repeat(this.width);
 
+        let lineCount = 0;
         const result = this.layout
             .map((line) => {
                 if (line === true) {
-                    return pipe;
+                    const label = this.labels[lineCount++];
+                    return this.buildShaft(label);
                 }
                 return gap;
             })
@@ -23,7 +36,12 @@ class Line extends Element {
     }
 
     get width() {
-        return this.options.size * 3;
+        const width = this.options.size * 3 + 1;
+
+        if (this.labelLength > 0) {
+            return width + 2 + this.labelLength;
+        }
+        return width;
     }
 
     get height() {
@@ -85,6 +103,37 @@ class Line extends Element {
         }
 
         return Math.min(neighbour.left, neighbour.right);
+    }
+
+    parseLabels(labels) {
+        this.labelLength = labels.reduce((previous, current) => {
+            if (typeof current === 'string') {
+                return Math.max(previous, current.length);
+            }
+            return previous;
+        }, 0);
+
+        return labels.map((label) => {
+            if (typeof label === 'string') {
+                return label.padEnd(this.labelLength);
+            }
+        });
+    }
+
+    buildShaft(label) {
+        let shaft = '─';
+
+        if (typeof label !== 'string') {
+            shaft = shaft.repeat(this.width);
+        }
+        else {
+            const shaftLength = (this.width - this.labelLength - 1) / 2;
+            shaft = shaft.repeat(shaftLength)
+                + `┤${label}├`
+                + shaft.repeat(shaftLength);
+        }
+
+        return shaft;
     }
 }
 module.exports = Line;

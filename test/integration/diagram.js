@@ -139,4 +139,22 @@ describe('Example diagrams', function() {
                       ───────X
         `);
     });
+
+
+    it('has labeled lines and arrows', function() {
+        const diagram = new Diagram()
+            .box(`box`)
+            .line(['label A', null, 'B'])
+            .box('box')
+            .arrow(['left:to the left', 'right:right'])
+            .box('box');
+
+        expect(diagram.draw()).to.equal(undent`
+            ┌─────────┐             ┌─────────┐                 ┌─────────┐
+            │         │──┤label A├──│         │◀─┤to the left├──│         │
+            │   box   │─────────────│   box   │                 │   box   │
+            │         │──┤B      ├──│         │──┤right      ├─▶│         │
+            └─────────┘             └─────────┘                 └─────────┘
+        `);
+    });
 });
