@@ -14,11 +14,16 @@ class Line extends Element {
         }
         else {
             this.count = lines;
-            this.labels = this.parseLabels(new Array(this.count));
+            this.labels = this.parseLabels([]);
         }
         this.diagram = diagram;
     }
 
+    /**
+     * Returns a string representation of the Line
+     *
+     * @return {string}
+     */
     toString() {
         const gap = ' '.repeat(this.width);
 
@@ -35,6 +40,11 @@ class Line extends Element {
         return this.style(result);
     }
 
+    /**
+     * The width of the lines
+     *
+     * @return {number}
+     */
     get width() {
         const width = this.options.size * 3 + 1;
 
@@ -44,6 +54,12 @@ class Line extends Element {
         return width;
     }
 
+    /**
+     * The height of the lines element based on it's neighbouring elements and
+     * line count
+     *
+     * @return {number}
+     */
     get height() {
         const neighbour = this.getNeighbourHeight();
         if (isNaN(neighbour)) {
@@ -52,10 +68,18 @@ class Line extends Element {
         return Math.max(neighbour, this.ownHeight);
     }
 
+    /**
+     * The height of the lines if they where not surrounded by other elements
+     *
+     * @return {number}
+     */
     get ownHeight() {
         return this.count;
     }
 
+    /**
+     * @return {boolean[]}
+     */
     get layout() {
         const whitespace = this.height - this.count;
         let gapSize = whitespace / (this.count);
@@ -79,12 +103,18 @@ class Line extends Element {
         return layout;
     }
 
+    /**
+     * @return {number}
+     */
     get position() {
         return this.diagram.findIndex((element) => {
             return element == this;
         });
     }
 
+    /**
+     * @return {number}
+     */
     getNeighbourHeight() {
         const neighbour = {};
         const position = this.position;
@@ -120,6 +150,10 @@ class Line extends Element {
         });
     }
 
+    /**
+     * @param {string} label
+     * @return {string}
+     */
     buildShaft(label) {
         let shaft = '─';
 

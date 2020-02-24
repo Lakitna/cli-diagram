@@ -1,7 +1,7 @@
 const Diagram = require('../../src/diagram');
 const outdent = require('outdent');
 
-describe.only('Example diagrams', function() {
+describe('Example diagrams', function() {
     it('is a simple diagram of three boxes with arrows', function() {
         const diagram = new Diagram()
             .box('left')

@@ -1,6 +1,11 @@
 const Line = require('./line');
 
 class Arrow extends Line {
+    /**
+     * @param {string[]|({direction: string, label: string})[]} directions
+     * @param {object} options
+     * @param {Diagram} diagram
+     */
     constructor(directions=[], options, diagram) {
         super(directions.length, options, diagram);
         this.parse(directions);
