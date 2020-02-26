@@ -7,7 +7,7 @@ declare module 'cli-diagram' {
     box(contents: string, options?: object): Diagram;
     container(contents: string, options?: object): Diagram;
     lines(lines: number | string[], options?: object): Diagram;
-    arrow(lines: number | string[], options?: object): Diagram;
+    arrow(arrows: string[] | { direction: string, label: string }[], options?: object): Diagram;
     space(size?: number): Diagram;
   }
 
