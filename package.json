@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Draw needlessly complex diagrams in the console",
   "main": "src/diagram.js",
+  "types": "src/index.d.ts",
   "scripts": {
     "test": "nyc mocha",
     "test:watch": "mocha --watch",
