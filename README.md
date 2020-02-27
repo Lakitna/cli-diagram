@@ -75,6 +75,21 @@ Draw one or more lines to link elements. Lines spread out to take advantage of t
 ────
 ```
 
+#### Labels
+
+You can add labels to lines.
+
+```javascript
+.line(['Hello, line!', null, 'Hi there'])
+.line([label, label, ...])
+```
+
+```plain
+──┤Hello, arrow!├──
+───────────────────
+──┤Hi there     ├──
+```
+
 #### Options
 
 `size {integer}`: The width of the lines.
@@ -128,6 +143,7 @@ You can add labels to arrows.
 
 ```javascript
 .arrow(['<--:Hello, arrow!', '<--', '-->:Hi there'])
+.arrow([arrow, arrow, ...])
 ```
 
 ```plain

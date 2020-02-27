@@ -2,10 +2,10 @@ const chalk = require('chalk');
 const Element = require('../../src/element');
 const Box = require('../../src/box');
 
-const undent = require('../resources/undent');
+const outdent = require('outdent');
 
 const singleLineContent = 'Hello, Box!';
-const multiLineContent = undent`
+const multiLineContent = outdent`
     This is my box. There are many like it, but this one is mine.
 
     My box is my best friend. It is my life. I must master it as I must

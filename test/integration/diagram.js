@@ -1,5 +1,5 @@
 const Diagram = require('../../src/diagram');
-const undent = require('../resources/undent');
+const outdent = require('outdent');
 
 describe('Example diagrams', function() {
     it('is a simple diagram of three boxes with arrows', function() {
@@ -10,7 +10,7 @@ describe('Example diagrams', function() {
             .arrow(['-->', '<--'])
             .box('right');
 
-        expect(diagram.toString()).to.equal(undent`
+        expect(diagram.toString()).to.equal(outdent`
             ┌──────────┐    ┌────────────┐    ┌───────────┐
             │          │    │            │───▶│           │
             │   left   │◀───│   middle   │    │   right   │
@@ -28,7 +28,7 @@ describe('Example diagrams', function() {
             .line(1)
             .box('high\n\nright');
 
-        expect(diagram.draw()).to.equal(undent`
+        expect(diagram.draw()).to.equal(outdent`
             ┌────────────────┐    ┌────────────┐    ┌───────────┐
             │                │────│            │    │           │
             │   short left   │────│   medium   │    │   high    │
@@ -48,7 +48,7 @@ describe('Example diagrams', function() {
             .line(1)
             .box('short right');
 
-        expect(diagram.draw()).to.equal(undent`
+        expect(diagram.draw()).to.equal(outdent`
             ┌──────────┐    ┌────────────┐    ┌─────────────────┐
             │          │────│            │    │                 │
             │   high   │    │   medium   │────│   short right   │
@@ -65,7 +65,7 @@ describe('Example diagrams', function() {
             .box('1', {size: 3})
             .box('      3      ', {size: 1});
 
-        expect(diagram.draw()).to.equal(undent`
+        expect(diagram.draw()).to.equal(outdent`
             ┌───────────────────┐┌───────────────────┐┌───────────────────┐
             │                   ││                   ││                   │
             │                   ││                   ││         3         │
@@ -84,7 +84,7 @@ describe('Example diagrams', function() {
             .space(5)
             .box('Give me some space, man!');
 
-        expect(diagram.draw()).to.equal(undent`
+        expect(diagram.draw()).to.equal(outdent`
             ┌───────────────┐               ┌──────────────────────────────┐
             │I feel so small│               │                              │
             └───────────────┘               │   Give me some space, man!   │
@@ -105,7 +105,7 @@ describe('Example diagrams', function() {
             .arrow(['-->'])
             .box('Lemonade');
 
-        expect(outer.draw()).to.equal(undent`
+        expect(outer.draw()).to.equal(outdent`
             ┌────────────────────────────────────────────────────┐    ┌──────────────┐
             │                                                    │    │              │
             │   Get lemons                                       │───▶│   Lemonade   │
@@ -132,11 +132,29 @@ describe('Example diagrams', function() {
             .arrow(['<--', '--x'])
             .space(10);
 
-        expect(diagram.draw()).to.equal(undent`
+        expect(diagram.draw()).to.equal(outdent`
             ───▶      ────
                       ────◀───
                       ────
                       ───────X
+        `);
+    });
+
+
+    it('has labeled lines and arrows', function() {
+        const diagram = new Diagram()
+            .box(`box`)
+            .line(['label A', null, 'B'])
+            .box('box')
+            .arrow(['left:to the left', 'right:right'])
+            .box('box');
+
+        expect(diagram.draw()).to.equal(outdent`
+            ┌─────────┐             ┌─────────┐                 ┌─────────┐
+            │         │──┤label A├──│         │◀─┤to the left├──│         │
+            │   box   │─────────────│   box   │                 │   box   │
+            │         │──┤B      ├──│         │──┤right      ├─▶│         │
+            └─────────┘             └─────────┘                 └─────────┘
         `);
     });
 });

@@ -20,6 +20,9 @@ module.exports = {
         'plugin:mocha/recommended',
         'plugin:chai-expect/recommended',
     ],
+    ignorePatterns: [
+        '**/*.d.ts',
+    ],
     rules: {},
     overrides: [
         {

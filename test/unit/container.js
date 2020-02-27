@@ -3,10 +3,10 @@ const Element = require('../../src/element');
 const Box = require('../../src/box');
 const Container = require('../../src/container');
 
-const undent = require('../resources/undent');
+const outdent = require('outdent');
 
 const singleLineContent = 'Hello, Container!';
-const multiLineContent = undent`
+const multiLineContent = outdent`
     This is my box. There are many like it, but this one is mine.
 
     My box is my best friend. It is my life. I must master it as I must

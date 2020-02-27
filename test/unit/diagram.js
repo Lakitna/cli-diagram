@@ -2,6 +2,7 @@ const sinon = require('sinon');
 
 const Diagram = require('../../src/diagram');
 const Box = require('../../src/box');
+const Container = require('../../src/container');
 const Line = require('../../src/line');
 const Arrow = require('../../src/arrow');
 
@@ -76,13 +77,54 @@ describe('Diagram', function() {
                 'world',
                 'bye',
                 'sky',
-            ])
+            ]);
         });
 
         it('returns this', function() {
             const diagram = new Diagram({options: true});
 
             const result = diagram.box('hello');
+
+            expect(result instanceof Diagram).to.be.true;
+        });
+    });
+
+    describe('container', function() {
+        it('adds a new Container element to the diagram', function() {
+            sinon.restore();
+            const diagram = new Diagram({options: true});
+
+            diagram.container('hey', {overwritten: true});
+
+            expect(diagram).to.be.lengthOf(1);
+            expect(diagram[0] instanceof Container).to.be.true;
+            expect(diagram[0].content).to.equal('hey');
+            expect(diagram[0].options.options).to.be.true;
+            expect(diagram[0].options.overwritten).to.be.true;
+        });
+
+        it('adds a new Container element to the diagram multiple times', function() {
+            const diagram = new Diagram({options: true});
+
+            diagram
+                .container('hello')
+                .container('world')
+                .container('bye')
+                .container('sky');
+
+            expect(diagram).to.be.lengthOf(4);
+            expect(diagram.map((n) => n.content)).to.deep.equal([
+                'hello',
+                'world',
+                'bye',
+                'sky',
+            ]);
+        });
+
+        it('returns this', function() {
+            const diagram = new Diagram({options: true});
+
+            const result = diagram.container('hello');
 
             expect(result instanceof Diagram).to.be.true;
         });
@@ -139,10 +181,10 @@ describe('Diagram', function() {
             expect(diagram).to.be.lengthOf(1);
             expect(diagram[0] instanceof Arrow).to.be.true;
             expect(diagram[0].directions).to.deep.equal([
-                {
-                    direction: '<--',
-                    label: undefined,
-                },
+                '<--',
+            ]);
+            expect(diagram[0].labels).to.deep.equal([
+                undefined,
             ]);
             expect(diagram[0].options.options).to.be.true;
             expect(diagram[0].options.overwritten).to.be.true;
@@ -159,23 +201,17 @@ describe('Diagram', function() {
 
             expect(diagram).to.be.lengthOf(4);
             expect(diagram.map((n) => n.directions)).to.deep.equal([
-                [{
-                    direction: '-->',
-                    label: undefined,
-                }],
-                [{
-                    direction: '<->',
-                    label: undefined,
-                }],
-                [{
-                    direction: '<--',
-                    label: undefined,
-                }],
-                [{
-                    direction: '---',
-                    label: undefined,
-                }],
-            ])
+                ['-->'],
+                ['<->'],
+                ['<--'],
+                ['---'],
+            ]);
+            expect(diagram.map((n) => n.labels)).to.deep.equal([
+                [undefined],
+                [undefined],
+                [undefined],
+                [undefined],
+            ]);
         });
 
         it('returns this', function() {

@@ -227,10 +227,10 @@ describe('Arrow', function() {
             const arrow = new Arrow(['left']);
 
             expect(arrow.directions).to.deep.equal([
-                {
-                    direction: 'left',
-                    label: undefined,
-                },
+                'left',
+            ]);
+            expect(arrow.labels).to.deep.equal([
+                undefined,
             ]);
         });
 
@@ -238,10 +238,10 @@ describe('Arrow', function() {
             const arrow = new Arrow(['left:label']);
 
             expect(arrow.directions).to.deep.equal([
-                {
-                    direction: 'left',
-                    label: 'label',
-                },
+                'left',
+            ]);
+            expect(arrow.labels).to.deep.equal([
+                'label',
             ]);
         });
 
@@ -252,10 +252,10 @@ describe('Arrow', function() {
             }]);
 
             expect(arrow.directions).to.deep.equal([
-                {
-                    direction: 'right',
-                    label: undefined,
-                },
+                'right',
+            ]);
+            expect(arrow.labels).to.deep.equal([
+                undefined,
             ]);
         });
 
@@ -266,10 +266,10 @@ describe('Arrow', function() {
             }]);
 
             expect(arrow.directions).to.deep.equal([
-                {
-                    direction: 'right',
-                    label: 'some label',
-                },
+                'right',
+            ]);
+            expect(arrow.labels).to.deep.equal([
+                'some label',
             ]);
         });
 
@@ -283,19 +283,16 @@ describe('Arrow', function() {
             }]);
 
             expect(arrow.directions).to.deep.equal([
-                {
-                    direction: 'left',
-                    label: undefined,
-                }, {
-                    direction: 'right',
-                    label: 'some label',
-                }, {
-                    direction: 'both',
-                    label: 'label     ',
-                }, {
-                    direction: 'left',
-                    label: undefined,
-                },
+                'left',
+                'right',
+                'both',
+                'left',
+            ]);
+            expect(arrow.labels).to.deep.equal([
+                undefined,
+                'some label',
+                'label     ',
+                undefined,
             ]);
         });
     });
