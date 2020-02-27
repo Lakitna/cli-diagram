@@ -11,6 +11,11 @@ class Arrow extends Line {
         this.parse(directions);
     }
 
+    /**
+     * Returns a string representation of the Arrow
+     *
+     * @return {string}
+     */
     toString() {
         const gap = ' '.repeat(this.width);
         const directions = [...this.directions];
@@ -27,6 +32,12 @@ class Arrow extends Line {
         return this.style(result);
     }
 
+    /**
+     * Parse & normalize the arrow definitions
+     *
+     * @private
+     * @param {string[]|({direction: string, label: string})[]} definitions
+     */
     parse(definitions) {
         this.directions = [];
         this.labels = [];
@@ -47,6 +58,12 @@ class Arrow extends Line {
         this.labels = this.parseLabels(this.labels);
     }
 
+    /**
+     * Build the string representation of the arrow
+     *
+     * @param {string} direction
+     * @param {string|undefined} label
+     */
     buildArrow(direction, label) {
         const shaft = this.buildShaft(label);
 

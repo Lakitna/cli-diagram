@@ -78,6 +78,8 @@ class Line extends Element {
     }
 
     /**
+     * The spacing of the lines returned as a boolean list
+     *
      * @return {boolean[]}
      */
     get layout() {
@@ -104,6 +106,8 @@ class Line extends Element {
     }
 
     /**
+     * The position of this element in the Diagram
+     *
      * @return {number}
      */
     get position() {
@@ -113,6 +117,8 @@ class Line extends Element {
     }
 
     /**
+     * Return the height of the highest direct neighbour
+     *
      * @return {number}
      */
     getNeighbourHeight() {
@@ -135,6 +141,12 @@ class Line extends Element {
         return Math.min(neighbour.left, neighbour.right);
     }
 
+    /**
+     * Parse and normalize the labels
+     *
+     * @param {string[]} labels
+     * @return {string[]}
+     */
     parseLabels(labels) {
         this.labelLength = labels.reduce((previous, current) => {
             if (typeof current === 'string') {
@@ -151,6 +163,8 @@ class Line extends Element {
     }
 
     /**
+     * Build the string representation of the line with label
+     *
      * @param {string} label
      * @return {string}
      */
