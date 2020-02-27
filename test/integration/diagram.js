@@ -1,5 +1,7 @@
-const Diagram = require('../../src/diagram');
 const outdent = require('outdent');
+const color = require('ansi-colors');
+
+const Diagram = require('../../src/diagram');
 
 describe('Example diagrams', function() {
     it('is a simple diagram of three boxes with arrows', function() {
@@ -29,6 +31,26 @@ describe('Example diagrams', function() {
             .box('high\n\nright');
 
         expect(diagram.draw()).to.equal(outdent`
+            ┌────────────────┐    ┌────────────┐    ┌───────────┐
+            │                │────│            │    │           │
+            │   short left   │────│   medium   │    │   high    │
+            │                │────│   middle   │────│           │
+            └────────────────┘    │            │    │   right   │
+                                  └────────────┘    │           │
+                                                    └───────────┘
+        `);
+    });
+
+    it('is a diagram of three boxes of varying height from '
+            + '(ltr) short to high with different colors', function() {
+        const diagram = new Diagram()
+            .box('short left', {color: 'red'})
+            .line(3, {color: 'yellow'})
+            .box('medium\nmiddle', {color: 'green'})
+            .line(1, {color: 'magenta'})
+            .box('high\n\nright', {color: 'blue'});
+
+        expect(color.unstyle(diagram.draw())).to.equal(outdent`
             ┌────────────────┐    ┌────────────┐    ┌───────────┐
             │                │────│            │    │           │
             │   short left   │────│   medium   │    │   high    │

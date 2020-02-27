@@ -39,7 +39,7 @@ class Diagram extends Array {
             .map((_, i) => {
                 return elements.reduce((accumulator, element) => {
                     if (typeof element[i] === 'undefined') {
-                        return accumulator + ' '.repeat(element[0].length);
+                        return accumulator + ' '.repeat(color.unstyle(element[0]).length);
                     }
                     return accumulator + element[i];
                 }, '')
