@@ -1,4 +1,4 @@
-const chalk = require('chalk');
+const color = require('ansi-colors');
 const Element = require('../../src/element');
 const Line = require('../../src/line');
 
@@ -235,7 +235,7 @@ describe('Line', function() {
             it('colors the drawn lines', function() {
                 const line = new Line(2, {color: 'red'}, []);
 
-                expect(line.toString()).to.equal(chalk.red(
+                expect(line.toString()).to.equal(color.red(
                     '────\n' +
                     '────'));
             });

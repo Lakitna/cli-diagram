@@ -1,4 +1,4 @@
-const chalk = require('chalk');
+const color = require('ansi-colors');
 const Element = require('../../src/element');
 
 describe('Element', function() {
@@ -38,7 +38,7 @@ describe('Element', function() {
                 color: 'red',
             });
 
-            expect(element.style('foo bar baz')).to.equal(chalk.red('foo bar baz'));
+            expect(element.style('foo bar baz')).to.equal(color.red('foo bar baz'));
         });
 
         it('returns the input when no options.color is set', function() {

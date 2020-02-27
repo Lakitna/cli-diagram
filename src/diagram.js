@@ -1,3 +1,5 @@
+const color = require('ansi-colors');
+
 const Box = require('./box');
 const Container = require('./container');
 const Line = require('./line');
