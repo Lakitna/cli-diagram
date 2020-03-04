@@ -7,7 +7,7 @@ class Line extends Element {
      * @param {Diagram} diagram
      */
     constructor(lines, options, diagram) {
-        super(options);
+        super(options, diagram);
         if (Array.isArray(lines)) {
             this.count = lines.length;
             this.labels = this.parseLabels(lines);
@@ -16,7 +16,6 @@ class Line extends Element {
             this.count = lines;
             this.labels = this.parseLabels([]);
         }
-        this.diagram = diagram;
     }
 
     /**
@@ -61,11 +60,7 @@ class Line extends Element {
      * @return {number}
      */
     get height() {
-        const neighbour = this.getNeighbourHeight();
-        if (isNaN(neighbour)) {
-            return this.ownHeight;
-        }
-        return Math.max(neighbour, this.ownHeight);
+        return Math.max(this.neighbourHeight.shortest, this.ownHeight);
     }
 
     /**
@@ -103,42 +98,6 @@ class Line extends Element {
         }
 
         return layout;
-    }
-
-    /**
-     * The position of this element in the Diagram
-     *
-     * @return {number}
-     */
-    get position() {
-        return this.diagram.findIndex((element) => {
-            return element == this;
-        });
-    }
-
-    /**
-     * Return the height of the highest direct neighbour
-     *
-     * @return {number}
-     */
-    getNeighbourHeight() {
-        const neighbour = {};
-        const position = this.position;
-        if (position > 0) {
-            neighbour.left = this.diagram[position - 1].ownHeight;
-        }
-        if (position < (this.diagram.length - 1)) {
-            neighbour.right = this.diagram[position + 1].ownHeight;
-        }
-
-        if (neighbour.left === 0 || isNaN(neighbour.left)) {
-            return neighbour.right;
-        }
-        if (neighbour.right === 0 || isNaN(neighbour.right)) {
-            return neighbour.left;
-        }
-
-        return Math.min(neighbour.left, neighbour.right);
     }
 
     /**

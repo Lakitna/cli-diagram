@@ -75,7 +75,7 @@ class Diagram extends Array {
     box(contents, options={}) {
         options = Object.assign({}, this.options, options);
 
-        this.push(new Box(contents, options));
+        this.push(new Box(contents, options, this));
         return this;
     }
 
@@ -91,7 +91,7 @@ class Diagram extends Array {
     container(contents, options={}) {
         options = Object.assign({}, this.options, options);
 
-        this.push(new Container(contents, options));
+        this.push(new Container(contents, options, this));
         return this;
     }
 
