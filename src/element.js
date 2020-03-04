@@ -1,4 +1,4 @@
-const chalk = require('chalk');
+const color = require('ansi-colors');
 
 class Element {
     /**
@@ -36,8 +36,8 @@ class Element {
      * @return {string}
      */
     style(string) {
-        if (typeof chalk[this.options.color] !== 'undefined') {
-            return chalk[this.options.color](string);
+        if (typeof color[this.options.color] !== 'undefined') {
+            return color[this.options.color](string);
         }
         return string;
     }

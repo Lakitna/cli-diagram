@@ -1,4 +1,4 @@
-const chalk = require('chalk');
+const color = require('ansi-colors');
 const Element = require('../../src/element');
 const Box = require('../../src/box');
 
@@ -139,7 +139,7 @@ describe('Box', function() {
             it('colors the drawn box', function() {
                 const box = new Box('Hello, Box!\n\n\nYou square!', {color: 'red'});
 
-                expect(box.toString()).to.equal(chalk.red(
+                expect(box.toString()).to.equal(color.red(
                     '┌─────────────────┐\n' +
                     '│                 │\n' +
                     '│   Hello, Box!   │\n' +

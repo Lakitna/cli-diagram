@@ -1,4 +1,4 @@
-const chalk = require('chalk');
+const color = require('ansi-colors');
 const Element = require('../../src/element');
 const Line = require('../../src/line');
 const Arrow = require('../../src/arrow');
@@ -302,7 +302,7 @@ describe('Arrow', function() {
             it('colors the drawn arrows', function() {
                 const arrow = new Arrow(['<--', '-->'], {color: 'red'}, []);
 
-                expect(arrow.toString()).to.equal(chalk.red(
+                expect(arrow.toString()).to.equal(color.red(
                     '◀───\n' +
                     '───▶'));
             });

@@ -26,8 +26,8 @@
     "flow"
   ],
   "dependencies": {
-    "boxen": "^4.2.0",
-    "chalk": "^3.0.0"
+    "ansi-colors": "^4.1.1",
+    "boxen": "^4.2.0"
   },
   "devDependencies": {
     "@stryker-mutator/core": "^2.5.0",
