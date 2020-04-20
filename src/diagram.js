@@ -58,7 +58,7 @@ class Diagram extends Array {
      */
     get height() {
         return this.reduce((previous, current) => {
-            if (isNaN(current.height)) return previous;
+            if (Number.isNaN(Number.parseInt(current.height, 10))) return previous;
             return Math.max(current.height, previous);
         }, 0);
     }

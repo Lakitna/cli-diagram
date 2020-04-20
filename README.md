@@ -188,6 +188,21 @@ Hello, container!
 
 `color {string}`: The color of the containers contents.
 
+`verticalAlign {'top'|'middle'|'bottom'}`: Vertical alignment of the string contents when there is height to spare.
+
+```javascript
+.box('Vertical alignment option')
+.container('Aligned to bottom', {verticalAlign: 'bottom'})
+```
+
+```plain
+┌───────────────────────────┐
+│                           │
+│   Vertical align option   │
+│                           │
+└───────────────────────────┘Aligned to bottom
+```
+
 ## Contributing
 
 Contributors are always welcome! I don't care if you are a beginner or an expert, all help is welcome.

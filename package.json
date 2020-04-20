@@ -30,11 +30,10 @@
     "boxen": "^4.2.0"
   },
   "devDependencies": {
-    "@stryker-mutator/core": "^2.5.0",
-    "@stryker-mutator/html-reporter": "^2.5.0",
-    "@stryker-mutator/javascript-mutator": "^2.5.0",
-    "@stryker-mutator/mocha-framework": "^2.5.0",
-    "@stryker-mutator/mocha-runner": "^2.5.0",
+    "@stryker-mutator/core": "^3.1.0",
+    "@stryker-mutator/javascript-mutator": "^3.1.0",
+    "@stryker-mutator/mocha-framework": "^3.1.0",
+    "@stryker-mutator/mocha-runner": "^3.1.0",
     "chai": "^4.2.0",
     "choma": "^1.2.1",
     "eslint": "^6.8.0",
@@ -42,12 +41,12 @@
     "eslint-plugin-chai-expect": "^2.1.0",
     "eslint-plugin-mocha": "^6.3.0",
     "eslint-plugin-sonarjs": "^0.5.0",
-    "eslint-plugin-unicorn": "^16.1.1",
-    "mocha": "^7.0.1",
-    "nyc": "^15.0.0",
-    "outdent": "^0.7.0",
-    "sinon": "^9.0.0",
-    "sinon-chai": "^3.4.0",
+    "eslint-plugin-unicorn": "^18.0.1",
+    "mocha": "^7.1.1",
+    "nyc": "^15.0.1",
+    "outdent": "^0.7.1",
+    "sinon": "^9.0.2",
+    "sinon-chai": "^3.5.0",
     "text2png": "^2.3.0"
   }
 }
