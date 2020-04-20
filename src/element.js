@@ -47,10 +47,10 @@ class Element {
             neighbour.right = this.diagram[position + 1].ownHeight;
         }
 
-        if (Number.isNaN( Number.parseInt(neighbour.left, 10))) {
+        if (Number.isNaN(Number.parseInt(neighbour.left, 10))) {
             neighbour.left = neighbour.right || 0;
         }
-        if (Number.isNaN( Number.parseInt(neighbour.right, 10))) {
+        if (Number.isNaN(Number.parseInt(neighbour.right, 10))) {
             neighbour.right = neighbour.left || 0;
         }
 
