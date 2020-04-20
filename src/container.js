@@ -43,13 +43,13 @@ class Container extends Element {
         }
 
         const width = color.unstyle(string.split('\n')[0]).length;
-        const blankLine = ' '.repeat(width);
+        const blankLine = ' '.repeat(width) + '\n';
         switch (this.options.verticalAlign) {
             case 'middle':
-                return `${blankLine}\n`.repeat(heightDiff/2)
+                return blankLine.repeat(heightDiff/2)
                     + string;
             case 'bottom':
-                return `${blankLine}\n`.repeat(heightDiff)
+                return blankLine.repeat(heightDiff)
                     + string;
             default:
                 return string;

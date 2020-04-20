@@ -35,7 +35,7 @@ class Element {
     /**
      * Return the height of the highest direct neighbour
      *
-     * @return {number}
+     * @return {{highest: number, shorted: number}}
      */
     get neighbourHeight() {
         const neighbour = {};
