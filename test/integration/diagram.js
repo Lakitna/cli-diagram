@@ -179,4 +179,35 @@ describe('Example diagrams', function() {
             └─────────┘             └─────────┘                 └─────────┘
         `);
     });
+
+
+    it('vertically aligns containers', function() {
+        const bottom = new Diagram()
+            .box('bottom');
+
+        const top = new Diagram()
+            .box('top');
+
+        const middle = new Diagram()
+            .box('middle');
+
+        const diagram = new Diagram()
+            .container(bottom, {verticalAlign: 'bottom'})
+            .box('a\npretty\nbig\nbox')
+            .container(middle, {verticalAlign: 'middle'})
+            .container(top, {verticalAlign: 'top'});
+
+        expect(diagram.draw()).to.equal(
+            '              ┌────────────┐              ┌─────────┐\n' +
+            '              │            │┌────────────┐│         │\n' +
+            '              │   a        ││            ││   top   │\n' +
+            '┌────────────┐│   pretty   ││   middle   ││         │\n' +
+            '│            ││   big      ││            │└─────────┘\n' +
+            '│   bottom   ││   box      │└────────────┘\n' +
+            '│            ││            │\n' +
+            '└────────────┘└────────────┘');
+    });
 });
+
+
+

@@ -8,6 +8,7 @@ describe('Element', function() {
         expect(element.options).to.deep.equal({
             size: 1,
             color: null,
+            verticalAlign: 'top',
         });
     });
 
@@ -19,6 +20,7 @@ describe('Element', function() {
         expect(element.options).to.deep.equal({
             size: 5,
             color: null,
+            verticalAlign: 'top',
         });
     });
 

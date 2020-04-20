@@ -44,20 +44,20 @@ describe('Container', function() {
     });
 
     it('draws a container without content', function() {
-        const container = new Container();
+        const container = new Container(undefined, {}, []);
 
         expect(container.toString()).to.equal('');
     });
 
     it('draws a container with a single line of content', function() {
-        const container = new Container(singleLineContent);
+        const container = new Container(singleLineContent, {}, []);
 
         expect(container.toString()).to.equal(
             'Hello, Container!');
     });
 
     it('draws a container with multiple lines of content', function() {
-        const container = new Container(multiLineContent);
+        const container = new Container(multiLineContent, {}, []);
 
         expect(container.toString()).to.equal(
             `This is my box. There are many like it, but this one is mine.       \n` +
@@ -88,7 +88,7 @@ describe('Container', function() {
     });
 
     it('draws a container containing a box', function() {
-        const container = new Container(new Box(singleLineContent));
+        const container = new Container(new Box(singleLineContent), {}, []);
 
         expect(container.toString()).to.equal(
             '┌───────────────────────┐\n' +
@@ -100,19 +100,19 @@ describe('Container', function() {
 
     describe('get height', function() {
         it('returns the height of a single-line drawn container', function() {
-            const container = new Container(singleLineContent);
+            const container = new Container(singleLineContent, {}, []);
 
             expect(container.height).to.equal(container.toString().split('\n').length);
         });
 
         it('returns the height of a multi-line drawn container', function() {
-            const container = new Container(multiLineContent);
+            const container = new Container(multiLineContent, {}, []);
 
             expect(container.height).to.equal(container.toString().split('\n').length);
         });
 
         it('returns the height of a container containing a box', function() {
-            const container = new Container(new Box(multiLineContent));
+            const container = new Container(new Box(multiLineContent), {}, []);
 
             expect(container.height).to.equal(container.toString().split('\n').length);
         });
@@ -121,13 +121,86 @@ describe('Container', function() {
     context('Options', function() {
         describe('color', function() {
             it('colors the drawn box', function() {
-                const container = new Container('Hello, Container!\n\n\nYou square!', {color: 'red'});
+                const container = new Container('Hello, Container!\n\n\nYou square!', {color: 'red'}, []);
 
                 expect(container.toString()).to.equal(color.red(
                     'Hello, Container!\n' +
                     '                 \n' +
                     '                 \n' +
                     'You square!      '));
+            });
+        });
+
+        describe('verticalAlign', function() {
+            it('does not align when the container is higher than its neighbours', function() {
+                const container = new Container('Hello,\nContainer', {
+                    verticalAlign: 'bottom',
+                }, []);
+                container.diagram = [
+                    {ownHeight: 1},
+                    container,
+                ];
+
+                expect(container.toString()).to.equal(
+                    'Hello,   \n' +
+                    'Container');
+            });
+
+            it('does not align when the container is the same height as its neightbours', function() {
+                const container = new Container('Hello,\nContainer', {
+                    verticalAlign: 'bottom',
+                }, []);
+                container.diagram = [
+                    {ownHeight: 2},
+                    container,
+                ];
+
+                expect(container.toString()).to.equal(
+                    'Hello,   \n' +
+                    'Container');
+            });
+
+            it('defaults to align top', function() {
+                const container = new Container('Hello, Container', {}, []);
+                container.diagram = [
+                    {ownHeight: 5},
+                    container,
+                ];
+
+                expect(container.toString()).to.equal(
+                    'Hello, Container');
+            });
+
+            it('aligns to the bottom', function() {
+                const container = new Container('Hello, Container', {
+                    verticalAlign: 'bottom',
+                }, []);
+                container.diagram = [
+                    {ownHeight: 5},
+                    container,
+                ];
+
+                expect(container.toString()).to.equal(
+                    '                \n' +
+                    '                \n' +
+                    '                \n' +
+                    '                \n' +
+                    'Hello, Container');
+            });
+
+            it('aligns to the middle', function() {
+                const container = new Container('Hello, Container', {
+                    verticalAlign: 'middle',
+                }, []);
+                container.diagram = [
+                    {ownHeight: 5},
+                    container,
+                ];
+
+                expect(container.toString()).to.equal(
+                    '                \n' +
+                    '                \n' +
+                    'Hello, Container');
             });
         });
     });

@@ -6,9 +6,10 @@ class Box extends Element {
     /**
      * @param {string} content
      * @param {object} options
+     * @param {Diagram} diagram
      */
-    constructor(content, options) {
-        super(options);
+    constructor(content, options, diagram) {
+        super(options, diagram);
         this.content = content || '';
     }
 
