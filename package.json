@@ -1,6 +1,6 @@
 {
   "name": "cli-diagram",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Draw needlessly complex diagrams in the console",
   "main": "src/diagram.js",
   "types": "src/index.d.ts",
