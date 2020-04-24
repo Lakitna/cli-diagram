@@ -6,7 +6,7 @@ module.exports = function(config) {
         ],
         mutator: 'javascript',
         packageManager: 'npm',
-        reporters: ['html', 'progress'],
+        reporters: ['html', 'progress', 'dashboard'],
         testRunner: 'mocha',
         transpilers: [],
         testFramework: 'mocha',
@@ -18,6 +18,9 @@ module.exports = function(config) {
             high: 80,
             low: 60,
             break: 50,
+        },
+        dashboard: {
+            reportType: 'full',
         },
     });
 };
