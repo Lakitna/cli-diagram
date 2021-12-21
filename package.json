@@ -5,6 +5,8 @@
   "main": "src/diagram.js",
   "types": "src/index.d.ts",
   "scripts": {
+    "build": "rollup -c",
+    "start": "rollup -cw",
     "test": "nyc mocha",
     "test:watch": "mocha --watch",
     "test:mutation": "stryker run \"stryker.conf.js\"",
@@ -30,23 +32,27 @@
     "boxen": "^4.2.0"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.0",
     "@stryker-mutator/core": "^3.1.0",
     "@stryker-mutator/javascript-mutator": "^3.1.0",
     "@stryker-mutator/mocha-framework": "^3.1.0",
     "@stryker-mutator/mocha-runner": "^3.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.8.0",
+    "@typescript-eslint/parser": "^5.8.0",
     "chai": "^4.2.0",
     "choma": "^1.2.1",
-    "eslint": "^6.8.0",
-    "eslint-config-google": "^0.14.0",
-    "eslint-plugin-chai-expect": "^2.1.0",
-    "eslint-plugin-mocha": "^6.3.0",
-    "eslint-plugin-sonarjs": "^0.5.0",
-    "eslint-plugin-unicorn": "^18.0.1",
+    "eslint": "^8.5.0",
+    "eslint-plugin-chai-expect": "^3.0.0",
+    "eslint-plugin-mocha": "^10.0.3",
+    "eslint-plugin-sonarjs": "^0.11.0",
+    "eslint-plugin-unicorn": "^39.0.0",
     "mocha": "^7.1.1",
     "nyc": "^15.0.1",
     "outdent": "^0.7.1",
-    "sinon": "^9.0.2",
+    "rollup": "^2.61.1",
+    "sinon": "^12.0.1",
     "sinon-chai": "^3.5.0",
-    "text2png": "^2.3.0"
+    "text2png": "^2.3.0",
+    "typescript": "^4.5.4"
   }
 }

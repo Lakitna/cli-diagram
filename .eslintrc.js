@@ -1,34 +1,36 @@
 module.exports = {
-    extends: 'google',
+    parser: "@typescript-eslint/parser",
     env: {
         node: true,
         mocha: true,
     },
     globals: {
-        expect: 'readonly',
+        expect: "readonly",
     },
     plugins: [
-        'sonarjs',
-        'chai-expect',
-        'mocha',
-        'unicorn',
+        "@typescript-eslint",
+        "sonarjs",
+        "chai-expect",
+        "mocha",
+        "unicorn",
     ],
     extends: [
-        'eslint:recommended',
-        'plugin:unicorn/recommended',
-        'plugin:sonarjs/recommended',
-        'plugin:mocha/recommended',
-        'plugin:chai-expect/recommended',
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:unicorn/recommended",
+        "plugin:sonarjs/recommended",
+        "plugin:mocha/recommended",
+        "plugin:chai-expect/recommended",
     ],
-    ignorePatterns: [
-        '**/*.d.ts',
-    ],
-    rules: {},
+    ignorePatterns: ["**/*.d.ts"],
+    rules: {
+        "unicorn/no-null": "off",
+    },
     overrides: [
         {
-            files: ['test/**/*.js'],
+            files: ["test/**/*.js"],
             rules: {
-                'sonarjs/no-duplicate-string': 'off',
+                "sonarjs/no-duplicate-string": "off",
             },
         },
     ],
